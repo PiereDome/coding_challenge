@@ -35,7 +35,7 @@ const getNextGeneration = (gameboard) => {
     const gameHeight = gameboard.length;
     const gameWidth = gameboard[0].length;
     // First map gets each row
-    gameboard.map((row, rowIndex, gameboard) => 
+    return gameboard.map((row, rowIndex, gameboard) => 
         // Second map gets each cell in the row
         row.map((cell, cellIndex, row) => {
             const neighbourCount = getNeighbourCount(gameboard, cellIndex, rowIndex, gameHeight, gameWidth);
@@ -69,7 +69,7 @@ const reduceRow = (row) => {
 module.exports = function higherOrderFunction(gameboard) {
     const nextGeneration = getNextGeneration(gameboard);
     // Return string formatted for displaying state of next generation gameboard
-    return gameboard.reduce((string, row, index, gameArray) => {
+    return nextGeneration.reduce((string, row, index, gameArray) => {
         string +=  reduceRow(row)
         // Add newline after row unless last row on the gameboard
         if(index < gameArray.length - 1) string += '\n';
